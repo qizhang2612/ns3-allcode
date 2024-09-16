@@ -25,6 +25,9 @@
 #include "ns3/object.h"
 #include "ns3/ptr.h"
 
+//zq add switch
+#include "ns3/switch.h"
+
 #include <vector>
 /* Modification */
 #include "ns3/custom-header.h"
@@ -218,6 +221,17 @@ class Node : public Object
      */
     static bool ChecksumEnabled();
 
+    //zqadd
+    Ptr<Switch> m_switch;
+    void SetSwNodeType(uint32_t type);
+    uint32_t GetSwNodeType();
+    void SetSwitchPort(int port);
+    int GetSwitchPort();
+
+    
+
+    
+
     /* Modification */
   //yibo
   uint32_t GetNodeType();
@@ -316,6 +330,10 @@ class Node : public Object
     /// Typedef for NetDevice addition listeners container
     typedef std::vector<DeviceAdditionListener> DeviceAdditionListenerList;
 
+    //zq add
+    uint32_t m_sw_node_type=0;
+
+
     uint32_t m_id;                                        //!< Node id for this node
     uint32_t m_sid;                                       //!< System id for this node
     std::vector<Ptr<NetDevice>> m_devices;                //!< Devices associated to this node
@@ -327,6 +345,8 @@ class Node : public Object
 public:
   virtual bool SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet, CustomHeader &ch);
   virtual void SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p);
+
+
 /* Modification */
 };
 
